@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec convert $1 -page a4 ${1%.*}.pdf

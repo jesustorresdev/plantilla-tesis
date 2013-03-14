@@ -87,12 +87,8 @@
   {\lstMakeShortInline[language=Python,basicstyle=\normalsize\ttfamily]#1}
 
 % Algoritmos
-%\usepackage{algorithm2e}
-\usepackage{float}
-\floatstyle{komaabove} % Usar el estilo de KOMA-script
-\newfloat{algorithm}{tbp}{loa}[chapter]
-\floatname{algorithm}{Algoritmo}
-\newcommand{\listalgorithmname}{\'Indice de algoritmos}
+\usepackage{algorithmic}
+\usepackage{algorithm}
 
 % Gráficos
 \usepackage{tikz}
@@ -190,7 +186,7 @@ en base al primero de los mismos.\par\bigskip}
 
 \cleardoublepage
 \pdfbookmark{\listalgorithmname}{listofalgorithms}
-\listof{algorithm}{\listalgorithmname}
+\listofalgorithms
 
 \input{acronimos}
 \input{notacion}

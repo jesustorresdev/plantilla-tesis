@@ -30,6 +30,23 @@ aliquam nec. In aliquet, mi sit amet fringilla cursus, nisl velit tincidunt
 lacus, in euismod lorem erat sit amet urna. Quisque ultrices luctus odio
 sollicitudin malesuada.
 
+\begin{algorithm}
+\begin{algorithmic}[1]
+\REQUIRE Complejo simplicial $K=\{\sigma_1, \dots, \sigma_n \}$ no vacío. \label{lin:lineaRara}
+\ENSURE \TRUE{} si $K$ es contráctil y \FALSE{} en caso contrario.
+\WHILE {$K \neq \{ \langle v \rangle \}$}
+\STATE Elegir un símplice $\sigma_i$ de $K$ que sea maximal y que contenga una cara libre $\delta\sigma_i$.
+\IF{no hay ningún símplice de esas características}
+\RETURN \FALSE
+\ELSE
+\STATE $K \leftarrow K \setminus \{\sigma_i, \delta\sigma_i\}$
+\ENDIF
+\ENDWHILE
+\RETURN \TRUE
+\end{algorithmic}
+\caption{Contracción de caras libres}\label{alg:algoritmoRaro}
+\end{algorithm}
+
 Ut pretium, eros consequat gravida viverra, purus neque ornare odio, id
 pretium erat mauris ut justo. Cras vel tellus ut arcu faucibus condimentum
 mattis eget justo. Phasellus ornare tellus sed tellus ornare pretium.

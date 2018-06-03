@@ -1,46 +1,55 @@
 Plantilla de memoria de tesis en LaTeX
-Copyright 2009-2010 Jesús Torres <jmtorres@ull.es>
+Copyright 2009-2018 Jesús Torres <jmtorres@ull.es>
 
-Esta obra está bajo licencia Creative Commons Reconocimiento 3.0 Unported
-<http://creativecommons.org/licenses/by/3.0/>
+Esta obra está bajo licencia Creative Commons Reconocimiento 4.0 Internacional
+<http://creativecommons.org/licenses/by/4.0/>
 
 
 Descripción
 -----------
 
-Hace más de un año que defendí mi tesis, antes de lo cual estuve algo más de
-otro año por las noches escogiendo, probado y configurando paquetes de LaTeX,
-buscando y probando tipos de fuentes, etc. Obviamente todo esto es algo muy
-personal que debe ser escogido a gusto de cada uno pero que también puede ser
-útil a otras personas, tanto si quieren utilizar mis preferencias en sus propios
-documentos tal cual como si buscan algunas ideas interesantes que reaprovechar.
+En 2009 defendí mi tesis. Antes de eso estuve algo más de otro año por las
+noches escogiendo, probado y configurando paquetes de LaTeX; buscando y probando
+tipos de fuentes; etc. Obviamente, todo eso es algo muy personal que debe ser
+escogido a gusto de cada uno pero que también puede ser útil a otras personas.
+Puede que alguien quiera utilizar tal cual mis preferencias en sus propios
+documentos o simplemente tener un modelo con ideas que reaprovechar.
 
-Por eso he eliminado todo el contenido de mi tesis para dejar este esqueleto a
+Por eso eliminé todo el contenido de mi tesis para dejar este esqueleto a
 modo de plantilla. Obviamente al sustituir el texto original por el conocido
 "Lorem ipsum" también se han perdido mucho de los casos de uso de las
 características configuradas, por lo que estas no se podrán apreciar en caso de
 compilar el ejemplo.
 
-En todo caso se puede descargar una copia de la tesis desde la dirección
+Lo que si se puede es descargar una copia de la tesis desde la dirección
 https://goo.gl/gepxan con el objeto de observar un ejemplo del resultado final.
 Si alguien estuviera interesado en algún ejemplo concreto en LaTeX sobre como
 hacer algo en particular, no tiene más que ponerse en contacto conmigo.
+
+En 2018 he vuelto a retomar el proyecto para darle un lavado de cara. Lo he
+actualizado a las características de las nuevas versiones de los paquetes
+utilizados, he cambiado las fuentes por otras similares, lo he reorganizado
+de una forma que yo creo que tiene más sentido y he incluido más ejemplos
+para que se vea mejor como se usa la plantilla.
 
 
 Requisitos
 ----------
 
-Para que la plantilla se pueda utilizar correctamente es necesario disponer los
-siguientes paquetes:
+Para que la plantilla se pueda utilizar correctamente es necesario disponer de
+los siguientes paquetes:
 
- * spanish babel 2009/01/02 v5.0h
- * komascript 2009/04/03 v3.03a
- * listings 2007/02/22 1.4
- * hyperref 2009/08/04 v6.78t
- * uop (fuente) 2009/03/07 
- * acronym 2009/01/25 v1.34
- * oberdiek
+ * koma-script
+ * unicode-math, por la fuente TeX Gyre Pagella Math
+ * subcaption
+ * listings
+ * acronym
  * algorithms
 
+y las fuentes:
+
+ * TeX Gyre Pagella
+ * TeX Gyre Pagella Math
+ * Linux Biolinum O
 
 -- Jesús Torres <jmtorres@ull.es>

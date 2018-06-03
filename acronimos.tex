@@ -1,26 +1,32 @@
 %%
-%% acronimos.tex - Memoria de la tesis
+%% acronimos.tex - Listado de los acrónimos utilizados (ver paquete acronym)
 %%
-%%   Copyright 2009-2010 Jesús Torres <jmtorres@ull.es>
+%%   Copyright 2009-2018 Jesús Torres <jmtorres@ull.es>
 %%
-%% Esta obra está bajo licencia Creative Commons Reconocimiento 3.0 Unported
+%% Esta obra está bajo licencia Creative Commons Reconocimiento 4.0 Internacional
 %%
 \cleardoublepage
-\chapter*{Índice de abreviaturas}\label{abreviaturas}
-\pdfbookmark{Índice de abreviaturas}{abreviaturas}
+\chapter*{Índice de acrónimos}\label{acronimos}
+\pdfbookmark{Índice de acrónimos}{acronimos}
 \begin{acronym}[SLERP]
   \acro{CAE}{consectetur adipiscing elit}
   \acro{TELC}{turpis eget ligula consequat}
   \acro{UHFC}{ut hendrerit faucibus consequa}
 
-\section*{Lorem ipsum dolor sit amet}
+\section*{Una sección en acrónimos}
   \acro{LM}{Lorem}
   \acro{IP}{Ipsum}
   \acro{DL}{Dolor}
   \acro{AM}{Amet}
 \end{acronym}
 
+%%
+% Así se crean acrónimos sin que aparezcan en el listado.
+% Sirve, por ejemplo, para crear versiones en plural, evitando que el mismo
+% acrónimo aparezca dos veces en la lista.
+% ¡¡OJO!! en español las siglas nunca se escriben en plural
+% http://www.rae.es/consultas/plural-de-las-siglas-las-ong-unos-dvd
 \acrodef{LMs}[LM]{Lorem}
 \acrodef{IPs}[IP]{Ipsum}
-\acrodef{DL}{Dolor}
+\acrodef{DLs}{Dolor}
 \acrodef{AMs}[AM]{Amet}

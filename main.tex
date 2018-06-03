@@ -1,0 +1,125 @@
+%%
+%% main.tex - Memoria de tesis
+%%
+%%   Copyright 2009-2018 Jesús Torres <jmtorres@ull.es>
+%%
+%% Esta obra está bajo licencia Creative Commons Reconocimiento 4.0 Internacional
+%%
+\documentclass[b5paper,twoside,11pt]{scrbook}
+\usepackage{local/tesis}
+\usepackage{local/tesis-spanish}
+%%
+% Incluye:
+%
+%   Referencias: varioref, autoref[hyperef]
+%   Algoritmos: algorithmic
+%   Subfiguras: subcaption
+%   Gráficos: graphicsx
+%   Tablas: longtable, tabularx y booktabs
+%       Define los tipos de columna C, L y R en modo matemático.
+%%
+% Mostrar marcas de corte
+%\usepackage[a4,center,frame]{crop}
+%%
+% Mostrar el diagrama del layout de las páginas
+%\usepackage{showframe}
+%%
+% Para poder definir algunas páginas apaisadas
+%\usepackage{pdflscape}
+%\usepackage{rotfloat}
+%%
+% Para generar un documento de ejemplo con el que probar la plantilla
+\usepackage{blindtext}
+\usepackage{mwe}
+
+% Bibliografía
+% Citas ordenadas en el orden en que aparecen en la bibliografía (sort).
+% % En la primera cita aparecen los nombres de todos los autores (longnamesfirst)
+% % \usepackage[longnamesfirst,sort]{natbib}
+\usepackage[sort]{natbib}
+\bibliographystyle{local/abbrvnat}
+\bibpunct{(}{)}{;}{a}{,}{,}
+\setbibpreamble{Las siguientes referencias bibliográficas se presentan en orden
+alfabético por autor. Las referencias con más de un autor aparecen ordenadas
+en base al primero de los mismos.\par\bigskip}
+
+% Macros de uso común: operadores matemáticos, programas,
+% listados de código, etc.
+\input{macros.tex}
+
+%%
+% Configuración de la salida en formato PDF
+\pdfvariable imageresolution 300
+\pdfvariable compresslevel 9
+\hypersetup{
+    ,bookmarksnumbered      =true
+    ,pdfencoding            =auto,
+    ,pdfborder              ={0 0 0},
+    ,pdfdisplaydoctitle     =true,
+    ,pdftitle               ={Título de la tesis},
+    ,pdfauthor              ={Autor de la tesis},
+    ,pdfsubject             ={Memoria de tesis doctoral},
+    ,pdfkeywords            ={memoria, tesis, plantilla, latex}
+}
+
+%%
+% Estructura del documento
+\begin{document}
+
+%% Parte inicial del documento
+\frontmatter
+\label{portada}\pdfbookmark{Tesis doctoral}{portada}
+\titlehead{\includegraphics[height=1cm]{example-image-a} \\
+  \vskip 1em
+  Centro de la Universidad \\
+  Departamento de la Universidad}
+\subject{Tesis doctoral}
+\title{Título de la tesis}
+\author{Autor de la tesis}
+\date{2018}
+\maketitle
+
+\input{autorizacion}
+\input{dedicatoria}
+\input{agradecimientos}
+
+\cleardoublepage
+\pdfbookmark{\spanishcontentsname}{tableofcontents}
+\tableofcontents
+
+\cleardoublepage
+\pdfbookmark{\listtablename}{listoftables}
+\listoftables
+
+\cleardoublepage
+\pdfbookmark{\listfigurename}{listoffigures}
+\listoffigures
+
+\cleardoublepage
+\pdfbookmark{\listalgorithmname}{listofalgorithms}
+\listofalgorithms
+
+\input{acronimos}
+\input{notacion}
+
+\input{capitulos/introduccion}
+
+%% Parte principal de la tesis
+\mainmatter
+\input{capitulos/capitulo01}
+\blinddocument
+
+% Resetear los acrónimos. Se volverán a imprimir completos en el primero uso
+%\acresetall
+
+\input{capitulos/conclusiones}
+
+\appendix
+%\input{sections/apendiceA}
+\blinddocument
+
+%% Parte final del documento
+\backmatter
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,172 @@
+%%
+%% tesis.sty - Modificaciones locales al estilo del documento.
+%%
+%%   Copyright 2009-2018 Jesús Torres <jmtorres@ull.es>
+%%
+%% Esta obra está bajo licencia Creative Commons Reconocimiento 4.0 Internacional
+%%
+\ProvidesPackage{local/tesis}
+
+% Opciones de KOMA-Script para personalizar el documento
+\KOMAoptions{
+    ,open               =right              % Abrir capítulos en la página derecha
+    ,headings           =big                % Esquema de encabezados: grande
+    ,chapterprefix      =true               % "Capítulo #N" + Nombre del capítulo
+    ,headsepline        =true               % Línea de separación en el encabezado de página
+    ,bibliography       =totoc              % Incluir la bibliografía en la TOC
+    ,captions           =tableheading       % Situar el título de las tablas encima
+    ,numbers            =endperiod          % Punto al final de los números de sección
+    ,footnotes          =multiple           % Separar con ',' notas al pié consecutivas
+    ,draft              =false              % Versión final. No borrador
+}
+
+% Interlineado a 1.5
+\usepackage[onehalfspacing]{setspace}
+
+% Configurar fuentes del documento
+\usepackage{fontspec}
+\usepackage{amsmath}                            % Antes de unicode-math
+\usepackage{unicode-math}                       % Incluye TeX Gyre Pagella Math
+\setmainfont[Ligatures=TeX]{TeX Gyre Pagella}   % Similar a "Palatino"
+\setmathfont{TeX Gyre Pagella Math}
+\setsansfont[Ligatures=TeX,Scale=MatchLowercase]{Linux Biolinum O}
+\setkomafont{pagehead}{\sffamily}
+\setkomafont{pagenumber}{\usekomafont{pagehead}}
+\setkomafont{caption}{\sffamily}
+\addtokomafont{captionlabel}{\sffamily\bfseries}
+\addtokomafont{chapter}{\fontsize{26}{26}\selectfont}
+% Espacio anterior y posterior al título de cada capítulo
+\renewcommand*{\chapterheadstartvskip}{\vspace*{4.50\baselineskip}}
+
+% [KOMA-Script] Recalcular las áreas de los bloques de texto
+\recalctypearea
+
+% No mostrar las subsecciones en la TOC
+\addtocounter{tocdepth}{-1}
+
+% Configuración para las imágenes incrustadas
+\usepackage{graphicx}
+\newlength{\figuresheight}
+\setlength{\figuresheight}{7cm}
+\setkeys{Gin}{totalheight=\figuresheight,keepaspectratio=true}
+\graphicspath{{./imagenes/}}
+
+% Subfiguras
+\usepackage{subcaption}
+
+% Configuración para las tablas
+\usepackage{longtable} % Tablas que se extienden más de una página
+\usepackage{tabularx}
+\usepackage{booktabs}
+% Definir tipos de columnas en modo matemático
+% Ver pag. 3 en la documentación del paquete array:
+\newcolumntype{C}{>{$}c<{$}}
+\newcolumntype{L}{>{$}l<{$}}
+\newcolumntype{R}{>{$}r<{$}}
+\renewcommand*{\arraystretch}{1.1} % Distancia entre filas
+
+% Listado de acrónimos usados
+\usepackage[printonlyused,withpage]{acronym}
+
+% Formato del encabezado de los capítulos.
+\usepackage{fancybox}
+\renewcommand*{\chapterformat}{%
+  \thisfancyput(-0.2cm, -1.38cm){%
+    \parbox{\textwidth}{%
+      {\normalfont\sectfont\nobreak\size@chapter{}%
+        \hfill\parbox{4cm}{\centering%
+        \setstretch{3.0}\chapappifchapterprefix{\nobreakspace}\\*%
+        {\fontsize{90}{90}\selectfont\thechapter}}}%
+    }%
+  }%
+}
+
+% Redefinición de las entradas de los capítulos en la tabla de contenidos
+% para que aparezca el prefijo.
+\newcommand*\chapterentrynumberformat[1]{\chapappifchapterprefix{\ }#1}
+\RedeclareSectionCommand[
+  tocentrynumberformat=\chapterentrynumberformat,
+  tocdynnumwidth=true
+]{chapter}
+
+%%
+% Entorno flotante para envolver descripciones de algoritmos en pseudocódigo
+% con el paquete algorithmic, aunque se puede adaptar a otros paquetes similares:
+% https://tex.stackexchange.com/a/230789
+\usepackage{algorithmic}
+\usepackage{xpatch} % Necesario para parchear el entorno algorithmic
+\newcommand*\atbeginalgorithm{%
+  \KOMAoptions{captions=heading}    % Título en la parte superior
+  % Parchear el entorno algorithmic para añadir las líneas
+  \xpretocmd\algorithmic{\hrule\vskip 1em}{}{\PatchFailed}%
+  \xapptocmd\endalgorithmic{\vskip 1em\hrule}{}{\PatchFailed}%
+}
+\DeclareNewTOC[
+  atbegin=\atbeginalgorithm,
+  type=algorithm,
+  types=algorithms,
+  float, % define a floating environment
+  floatpos=tbp,
+  floattype=6,
+  counterwithin=chapter,
+  name=Algoritmo,
+  listname={Índice de algoritmos},
+  tocentryindent=1.5em,
+  tocentrynumwidth=2.3em
+]{loa}
+\setuptoc{loa}{chapteratlist}   % Usa el capítulo en la numeración
+
+%%
+% Formato de los títulos de tablas, figuras y otros float.
+\renewcommand*{\captionformat}{\ }  % Delimitador entre la etiqueta y el texto.
+\setcapindent{0em}  % Sin indentación cuando tiene más de una línea
+
+%%
+% Entorno para figuras con títulos con el ancho ajustado al de la imagen
+\newsavebox{\figuredefinescaptionwidth@box}
+\newlength{\figuredefinescaptionwidth@width}
+\newenvironment{figuredefinescaptionwidth}{%
+  \begin{lrbox}{\figuredefinescaptionwidth@box}%
+}{%
+  \end{lrbox}%
+  \global\sbox\figuredefinescaptionwidth@box{%
+    \usebox\figuredefinescaptionwidth@box}%
+  \aftergroup\figuredefinescaptionwidth@usebox%
+}
+\newcommand*{\figuredefinescaptionwidth@usebox}{%
+  \settowidth{\figuredefinescaptionwidth@width}{%
+    \usebox{\figuredefinescaptionwidth@box}}%
+  \setcapwidth{\figuredefinescaptionwidth@width}%
+  \usebox{\figuredefinescaptionwidth@box}
+}
+
+%%
+% Formato de la portada
+\renewcommand*\maketitle{%
+  \begin{titlepage}
+    \setparsizes{\z@}{\z@}{\z@\@plus 1fil}\par@updaterelative
+    \ifx\@titlehead\@empty \else\centering
+      \begin{minipage}[t]{0.75\textwidth}%
+        \centering\large\@titlehead
+      \end{minipage}\par
+    \fi
+    \vskip 4em
+    \begin{center}
+      \ifx\@subject\@empty \else
+        {\subject@font \@subject \par}%
+        \vskip 1em
+      \fi
+      {\titlefont\Huge \@title\par}%
+      \vskip 1em
+      {\ifx\@subtitle\@empty\else\usekomafont{subtitle}\@subtitle\par\fi}%
+      \vfill\null
+      {\Large \lineskip 0.75em
+        \begin{tabular}[t]{c}
+          \@author
+        \end{tabular}\par
+      }%
+      \vskip 1em
+      {\Large \@date \par}%
+    \end{center}\par
+  \end{titlepage}
+}

@@ -1,0 +1,41 @@
+%%
+%% macros.tex - Macros de uso común
+%%
+%%   Copyright 2009-2018 Jesús Torres <jmtorres@ull.es>
+%%
+%% Esta obra está bajo licencia Creative Commons Reconocimiento 4.0 Internacional
+%%
+
+% Operadores matemáticos adicionales
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\trace}{tr}
+\DeclareMathOperator*{\var}{var}
+\DeclareMathOperator*{\bigo}{\mathcal{O}}
+
+% Otros elementos matemáticos
+\newcommand{\relphantom}[1]{\mathrel{\phantom{#1}}}
+\newcommand{\func}[1]{\mathnormal{#1}}
+\newcommand{\mat}[1]{\boldsymbol{\mathrm{\MakeUppercase{#1}}}}
+\newcommand{\spc}[1]{\mathbb{#1}}
+\newcommand{\dist}[1]{\mathcal{#1}}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\newcommand{\UPSIGMA}{\boldsymbol{\Sigma}}
+
+% Macros para ayudar a formatear los nombres de los programas
+\usepackage{xspace}
+\newcommand*{\program}[1]{{\ttfamily #1}}
+\newcommand{\Blender}{\program{Blender}\xspace}
+\newcommand{\Matlab}{\program{MATLAB}\xspace}
+\newcommand{\Makehuman}{\program{MakeHuman}\xspace}
+
+% Macros para formatear listados de código
+\usepackage{listings}
+\lstset{basicstyle=\small}
+\newcommand*{\lstCppMakeShortInline}[1]
+  {\lstMakeShortInline[language=C++,basicstyle=\normalsize\ttfamily]#1}
+\newcommand*{\lstMatlabMakeShortInline}[1]
+  {\lstMakeShortInline[language=MATLAB,basicstyle=\normalsize\ttfamily]#1}
+\newcommand*{\lstPythonMakeShortInline}[1]
+  {\lstMakeShortInline[language=Python,basicstyle=\normalsize\ttfamily]#1}

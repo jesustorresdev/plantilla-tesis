@@ -1,0 +1,118 @@
+%%
+%% tesis-spanish.sty - Modificaciones locales relativas al idioma español.
+%%
+%%   Copyright 2009-2018 Jesús Torres <jmtorres@ull.es>
+%%
+%% Esta obra está bajo licencia Creative Commons Reconocimiento 4.0 Internacional
+%%
+\ProvidesPackage{local/tesis-spanish}
+% http://www.tex-tipografia.com/spanish2.html
+\usepackage[spanish,es-noenumerate,es-tabla]{babel}
+
+% Sustituir "Índice general" como encabezado del TOC
+\renewcommand*{\spanishcontentsname}{Índice}
+
+% Traducir las cadenas del paquete algorithmic al español
+% http://www.rosapolis.net/2008/04/21/escribir-algoritmos-en-latex/
+\renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
+\renewcommand{\algorithmicensure}{\textbf{Salida:}}
+
+% Redefinición de los símbolos en la listas no numeradas según babel spanish.
+\spanishsignitems
+
+% Redefinición de los entornos quotation y quote de KOMA-Script para utilizar
+% el entorno quoting del componente spanish de babel.
+\renewenvironment{quotation}{%
+  \list{}{\listparindent 1em%
+    \itemindent    \listparindent
+    \rightmargin   \leftmargin
+    \parsep        \z@ \@plus\p@
+  }%
+  \item\begin{quoting}\relax
+}{%
+  \end{quoting}\endlist
+}
+\renewenvironment{quote}{%
+  \list{}{\rightmargin\leftmargin}%
+  \item\begin{quoting}\relax
+}{%
+  \end{quoting}\endlist
+}
+
+% Referencias añadiendo el número de la página
+\usepackage[spanish]{varioref}
+\labelformat{enumi}{(#1)}
+\labelformat{equation}{(#1)}
+
+% Redefinicion de autoref (referencias con prefijo) en versiones
+% con plurales y mayúsculas
+\usepackage{hyperref}
+\let\orgautoref\autoref
+\providecommand{\Autoref} % Mayúsculas y singular
+  {\def\equationautorefname{La ecuación}%
+   \def\itemautorefname{El elemento}%
+   \def\figureautorefname{La figura}%
+   \def\subfigureautorefname{La figura}%
+   \def\tableautorefname{La tabla}%
+   \def\appendixautorefname{El apéndice}%
+   \def\chapterautorefname{El capítulo}%
+   \def\sectionautorefname{El apartado}%
+   \def\subsectionautorefname{El apartado}%
+   \def\subsubsectionautorefname{El apartado}%
+   \def\algorithmautorefname{El algoritmo}%
+   \def\ALC@uniqueautorefname{La linea}%
+   \orgautoref}
+\providecommand{\Autorefs} % Mayúsculas y plural
+  {\def\equationautorefname{Las ecuaciones}%
+   \def\itemautorefname{Los elementos}%
+   \def\figureautorefname{Las figuras}%
+   \def\subfigureautorefname{Las figuras}%
+   \def\tableautorefname{Las tablas}%
+   \def\appendixautorefname{Los apéndices}%
+   \def\chapterautorefname{Los capítulos}%
+   \def\sectionautorefname{Los apartados}%
+   \def\subsectionautorefname{Los apartados}%
+   \def\subsubsectionautorefname{Los apartados}%
+   \def\algorithmautorefname{Los algoritmos}%
+   \def\ALC@uniqueautorefname{Las lineas}%
+   \orgautoref}
+\renewcommand{\autoref} % Minúsculas y singular
+  {\def\equationautorefname{la ecuación}%
+   \def\itemautorefname{el elemento}%
+   \def\figureautorefname{la figura}%
+   \def\subfigureautorefname{la figura}%
+   \def\tableautorefname{la tabla}%
+   \def\appendixautorefname{el apéndice}%
+   \def\chapterautorefname{el capítulo}%
+   \def\sectionautorefname{el apartado}%
+   \def\subsectionautorefname{el apartado}%
+   \def\subsubsectionautorefname{el apartado}%
+   \def\algorithmautorefname{el algoritmo}%
+   \def\ALC@uniqueautorefname{la linea}%
+   \orgautoref}
+\providecommand{\autorefs} % Minúsculas y plural
+  {\def\equationautorefname{las ecuaciones}%
+   \def\itemautorefname{los elementos}%
+   \def\figureautorefname{las figuras}%
+   \def\subfigureautorefname{las figuras}%
+   \def\tableautorefname{las tablas}%
+   \def\appendixautorefname{los apéndices}%
+   \def\chapterautorefname{los capítulos}%
+   \def\sectionautorefname{los apartados}%
+   \def\subsectionautorefname{los apartados}%
+   \def\subsubsectionautorefname{los apartados}%
+   \def\algorithmautorefname{los algoritmos}%
+   \def\ALC@uniqueautorefname{las lineas}%
+   \orgautoref}
+\providecommand{\Vautoref}[1]
+  {\Autoref{#1}\vpageref[\unskip]{#1}}
+\providecommand{\Vautorefs}[1]
+  {\Autorefs{#1}\vpageref[\unskip]{#1}}
+\providecommand{\vautoref}[1]
+  {\autoref{#1}\vpageref[\unskip]{#1}}
+\providecommand{\vautorefs}[1]
+  {\autorefs{#1}\vpageref[\unskip]{#1}}
+
+% Añadir un punto detrás del número de sección en los marcadores del PDF
+% Ver numbers=endperiod en las opciones \KOMAoptions
+\def\Hy@numberline#1{#1. }

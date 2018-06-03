@@ -1,0 +1,56 @@
+%%
+%% capitulo01.tex - Memoria de la tesis
+%%
+%%   Copyright 2009-2018 Jesús Torres <jmtorres@ull.es>
+%%
+%% Esta obra está bajo licencia Creative Commons Reconocimiento 4.0 Internacional
+%%
+\chapter{Capítulo 1}\label{ch:capitulo}
+
+\section{Sección 1 del capítulo 1}\label{sec:seccion}
+
+Dentro del documento se pueden describir algoritmos, que como son \emph{floats}
+pueden aparecer en cualquier parte. Por eso se deben referenciar, como se puede ver
+en \vautoref{alg:algoritmoRaro}, incluso a \autoref{alg:lin:output} y otras
+líneas concretas. También podemos hablar por primera vez de \ac{LM} para que al volver
+a usar \ac{LM} como acrónimo ocurra la magia. Y podemos incluir figuras ~---véase \vautoref{fig:unaFigura}~---.
+
+\begin{algorithm}
+\caption{Búsqueda de números pares.}\label{alg:algoritmoRaro}
+\begin{algorithmic}[1]
+\REQUIRE Un conjunto $v$ no vacío de enteros.
+\ENSURE El primer elemento par de $v$.
+\FOR{$i$ in $v$}\label{alg:lin:output}
+\IF{$i$ es par}
+\RETURN $i$
+\ENDIF
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\begin{figure}
+  \centering
+  \includegraphics{example-image-b}
+  \caption{Un ejemplo de figura. Solo voy a poner una aunque podría poner muchas más.}
+  \label{fig:unaFigura}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \begin{figuredefinescaptionwidth}
+    \includegraphics{example-image-c}
+  \end{figuredefinescaptionwidth}
+  \caption{Un ejemplo de figura con el título ajustado al ancho de la imagen.}
+  \label{fig:otraFigura}
+\end{figure}
+
+\lstCppMakeShortInline|
+En \texttt{macros.tex} se incluyen algunas ayudas. Por ejemplo, para mencionar
+fácilmente programas y comandos como \Matlab o código en línea como
+|'open("holamundo.txt")'|. En cualquier caso, gracias al paquete \texttt{listings}
+se pueden crear \emph{floats} de listados de código. Y recuerda poner siempre
+referencias a tus referencias bibliográficas. No hay nada como leer a grandes como
+\cite{Torres2009}.
+\lstDeleteShortInline|
+
+\Blindtext

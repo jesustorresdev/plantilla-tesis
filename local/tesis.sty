@@ -83,11 +83,15 @@
 
 % Redefinición de las entradas de los capítulos en la tabla de contenidos
 % para que aparezca el prefijo.
-\newcommand*\chapterentrynumberformat[1]{\chapappifchapterprefix{\ }#1}
-\RedeclareSectionCommand[
-  tocentrynumberformat=\chapterentrynumberformat,
-  tocdynnumwidth=true
-]{chapter}
+\let\originaladdchaptertocentry\addchaptertocentry
+\renewcommand*{\addchaptertocentry}[2]{%
+  \IfArgIsEmpty{#1}{% Entrada sin número
+    \originaladdchaptertocentry{#1}{#2}%
+  }{% Entrada con número
+    % Eliminar el número y poner el prefijo directamente en el título del capítulo
+    \originaladdchaptertocentry{}{\chapapp~#1\autodot\space#2}%
+  }%
+}
 
 %%
 % Entorno flotante para envolver descripciones de algoritmos en pseudocódigo
